@@ -1,7 +1,16 @@
 # Build stage
-FROM node:20-slim as build
+FROM node:latest as build
 
 WORKDIR /app
+
+# Check Node.js and npm versions
+RUN node --version && npm --version
+
+# Install latest npm
+RUN npm install -g npm@latest
+
+# Check npm version after update
+RUN npm --version
 
 # Copy package files
 COPY package*.json ./
